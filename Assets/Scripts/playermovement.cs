@@ -13,7 +13,7 @@ public class playermovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.velocity = new Vector2 (horizontal, 0f) ;
+        rb.velocity = new Vector2 (horizontal, 0f) * speed ;
     }
 
     //Movimiento del personaje
