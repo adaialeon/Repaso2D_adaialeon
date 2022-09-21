@@ -13,7 +13,7 @@ public class playermovement : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.MovePosition(rb.position + new Vector2 (1f, 0f) * Time.deltaTime);
+        rb.velocity = new Vector2 (horizontal, 0f) ;
     }
 
     //Movimiento del personaje
@@ -40,8 +40,6 @@ public class playermovement : MonoBehaviour
         //playerTransform.position += new Vector3 (horizontal * speed * Time.deltaTime, 0, 0);
         //playerTransform.position += new Vector3 (1, 0, 0) * horizontal * speed * Time.deltaTime;
         //playerTransform.Translate(Vector3.right * horizontal * speed * Time.deltaTime, Space.World);
-        playerTransform.Translate(Vector2.right * horizontal * speed * Time.deltaTime, Space.World);
-
-
+       
     }   
 }
