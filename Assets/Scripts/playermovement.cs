@@ -13,6 +13,8 @@ public class playermovement : MonoBehaviour
     public PlayableDirector director;
     private Rigidbody2D rb;
 
+    float dirX;
+
     private void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();   
@@ -27,6 +29,7 @@ public class playermovement : MonoBehaviour
 
     //Movimiento del personaje
     public float speed = 5.5f; 
+    
 
     //Almacenamiento de imputs, movimiento horizontal
     private float horizontal;
@@ -43,8 +46,28 @@ public class playermovement : MonoBehaviour
     //Se ejecuta una vez por frame
     void Update()
     {
+
+        dirX = Input.GetAxisRaw("Horizontal");
+        Debug.Log(dirX);
+
         horizontal = Input.GetAxisRaw("Horizontal");     
         
+        //Rotacion del personaje
+        if(dirX ==-1)
+        {
+            anim.SetBool("Correr", true);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if(dirX == 1)
+        {
+            anim.SetBool("Correr", false);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            anim.SetBool("Correr", false);
+        }
+
         //Activar las animaciones del Animator
         if(horizontal == 0)
         {
@@ -71,3 +94,4 @@ public class playermovement : MonoBehaviour
         }
     }   
 }
+
