@@ -15,6 +15,11 @@ public class playermovement : MonoBehaviour
 
     float dirX;
 
+    //Salto
+    public bool isGorounded;
+    //variables para velocidad-fuerza de salto
+    public float jumpForce = 10f;
+
     private void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();   
@@ -76,6 +81,15 @@ public class playermovement : MonoBehaviour
         else 
         {
             anim.SetBool("Correr", true);
+        }
+
+        if(horizontal == 0)
+        {
+            anim.SetBool("Saltar", false);
+        }   
+        else 
+        {
+            anim.SetBool("Saltar", true);
         }
 
         //Acceder a la posicion del transform (se puede escribir de varias maneras)
