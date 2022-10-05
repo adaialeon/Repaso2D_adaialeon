@@ -8,14 +8,20 @@ public class playermovement : MonoBehaviour
 {
 
     //VIDEO
+    private Animator anim;
+
     public PlayableDirector director;
     private Rigidbody2D rb;
-    private void Awake() {
-        rb = GetComponent<Rigidbody2D>();       
+
+    private void Awake() 
+    {
+        rb = GetComponent<Rigidbody2D>();   
+        anim = GetComponent<Animator>();    
 
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate() 
+    {
         rb.velocity = new Vector2 (horizontal, 0f) * speed ;
     }
 
@@ -37,7 +43,17 @@ public class playermovement : MonoBehaviour
     //Se ejecuta una vez por frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");        
+        horizontal = Input.GetAxisRaw("Horizontal");     
+        
+        //Activar las animaciones del Animator
+        if(horizontal == 0)
+        {
+            anim.SetBool("Correr", false);
+        }   
+        else 
+        {
+            anim.SetBool("Correr", true);
+        }
 
         //Acceder a la posicion del transform (se puede escribir de varias maneras)
         //playerTransform.position += new Vector3 (horizontal * speed * Time.deltaTime, 0, 0);
