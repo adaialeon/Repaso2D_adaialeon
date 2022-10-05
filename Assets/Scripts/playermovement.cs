@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
+
 
 public class playermovement : MonoBehaviour
 {
 
     //VIDEO
+    public PlayableDirector director;
     private Rigidbody2D rb;
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();       
@@ -41,5 +44,14 @@ public class playermovement : MonoBehaviour
         //playerTransform.position += new Vector3 (1, 0, 0) * horizontal * speed * Time.deltaTime;
         //playerTransform.Translate(Vector3.right * horizontal * speed * Time.deltaTime, Space.World);
        
+    }
+
+    //Activar la cinematica
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Cinematica")  
+        {
+            director.Play();
+        }
     }   
 }
